@@ -2,7 +2,7 @@
 
 ## Project Snapshot
 
-`example.com` is a generated game guide site. After launch, treat the generated project as a live content property, not as the central workflow repo or a template.
+`wardogsgame.xyz` is a generated game guide site for WARDOGS (BULKHEAD-developed, Team17-published 100-player three-squad tactical FPS, Steam AppID 1867240, Steam Early Access launch 2026-09-10). After launch, treat the generated project as a live content property, not as the central workflow repo or a template.
 
 The site uses Next.js App Router, TypeScript, data-driven content in `src/data`, generated metadata, JSON-LD, sitemap, robots, and Next.js static export deployed through Cloudflare Workers Static Assets. Production guide sites must not route ordinary page requests through an OpenNext or other Worker JS runtime.
 

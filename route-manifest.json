@@ -1,0 +1,172 @@
+[
+  {
+    "id": "home-en-US",
+    "translationKey": "home",
+    "locale": "en-US",
+    "routeKind": "home",
+    "url": "/",
+    "alternates": {
+      "en-US": "/"
+    }
+  },
+  {
+    "id": "fixed-overview-en-US",
+    "translationKey": "overview",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/about",
+    "alternates": {
+      "en-US": "/about"
+    }
+  },
+  {
+    "id": "fixed-closed-beta-en-US",
+    "translationKey": "closed-beta",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/closed-beta",
+    "alternates": {
+      "en-US": "/closed-beta"
+    }
+  },
+  {
+    "id": "fixed-control-zone-en-US",
+    "translationKey": "control-zone",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/control-zone",
+    "alternates": {
+      "en-US": "/control-zone"
+    }
+  },
+  {
+    "id": "fixed-economy-en-US",
+    "translationKey": "economy",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/economy",
+    "alternates": {
+      "en-US": "/economy"
+    }
+  },
+  {
+    "id": "fixed-gameplay-loop-en-US",
+    "translationKey": "gameplay-loop",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/gameplay",
+    "alternates": {
+      "en-US": "/gameplay"
+    }
+  },
+  {
+    "id": "fixed-maps-en-US",
+    "translationKey": "maps",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/maps",
+    "alternates": {
+      "en-US": "/maps"
+    }
+  },
+  {
+    "id": "fixed-multi-platform-en-US",
+    "translationKey": "multi-platform",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/multi-platform",
+    "alternates": {
+      "en-US": "/multi-platform"
+    }
+  },
+  {
+    "id": "fixed-platforms-en-US",
+    "translationKey": "platforms",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/platforms",
+    "alternates": {
+      "en-US": "/platforms"
+    }
+  },
+  {
+    "id": "fixed-release-status-en-US",
+    "translationKey": "release-status",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/release",
+    "alternates": {
+      "en-US": "/release"
+    }
+  },
+  {
+    "id": "fixed-reviews-en-US",
+    "translationKey": "reviews",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/reviews",
+    "alternates": {
+      "en-US": "/reviews"
+    }
+  },
+  {
+    "id": "fixed-roles-en-US",
+    "translationKey": "roles",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/roles",
+    "alternates": {
+      "en-US": "/roles"
+    }
+  },
+  {
+    "id": "fixed-steam-availability-en-US",
+    "translationKey": "steam-availability",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/steam",
+    "alternates": {
+      "en-US": "/steam"
+    }
+  },
+  {
+    "id": "fixed-system-requirements-en-US",
+    "translationKey": "system-requirements",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/system-requirements",
+    "alternates": {
+      "en-US": "/system-requirements"
+    }
+  },
+  {
+    "id": "fixed-tags-en-US",
+    "translationKey": "tags",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/tags",
+    "alternates": {
+      "en-US": "/tags"
+    }
+  },
+  {
+    "id": "fixed-trailer-en-US",
+    "translationKey": "trailer",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/trailer",
+    "alternates": {
+      "en-US": "/trailer"
+    }
+  },
+  {
+    "id": "fixed-vehicles-en-US",
+    "translationKey": "vehicles",
+    "locale": "en-US",
+    "routeKind": "fixed",
+    "url": "/vehicles",
+    "alternates": {
+      "en-US": "/vehicles"
+    }
+  }
+]

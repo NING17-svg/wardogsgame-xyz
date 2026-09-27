@@ -24,6 +24,22 @@ Record every growth-relevant edit here. Keep entries short, factual, and useful 
 - Entity changed: Generic entity Hubs/details now render source links, relationships, and optional registered local images from one base fact package.
 - Verification: Typecheck, template validation, content validation, rendered SEO validation, route-manifest generation, and multilingual entity fixtures.
 
+### 2026-09-28 - WARDOGS launch V3 site configuration
+
+- Task: Configure the WARDOGS Guide site (wardogsgame.xyz) with the V3 launch content package, primary locale en-US, and 16 fixed pages.
+- Files changed: `src/data/site.ts` (game identity, domain, official sources), `src/data/navigation.ts` (primary and footer navigation), `src/data/pages/fixed-pages.ts` and `src/data/pages/home.ts` (assembled pages), `src/data/faq.ts` (FAQ schema-eligible items), `src/lib/content.ts` (route wiring, removed template placeholder pages), `scripts/validate-template-contract.ts` (dynamic fixture selection), removed `wiki-pages.ts`, `guide-pages.ts`, `release-pages.ts`, `site-pages.ts`.
+- URLs affected: 15 new fixed pages (/about, /release, /steam, /platforms, /multi-platform, /closed-beta, /tags, /gameplay, /control-zone, /economy, /roles, /vehicles, /maps, /system-requirements, /trailer, /reviews) plus the home route.
+- SEO/GEO changed: Each page now exposes canonical, hreflang en-US, and a Quick Answer callout sourced from the V3 content package. The home links to the 15 fixed pages through hero CTAs and recent-updates modules.
+- Verification: `npm run verify` passes (typecheck, lint, template validation, content validation, indexnow, build, rendered SEO), V3 route contract validator passes against the Site Plan and content package.
+
+### 2026-09-28 - WARDOGS Guide baseline bootstrap
+
+- Task: Initial V3 template baseline for `wardogsgame.xyz`.
+- Files changed: Template project baseline; `package.json` and `wrangler.jsonc` renamed; `src/data/site.ts` set to WARDOGS Guide defaults.
+- URLs affected: All template-default routes; will be replaced by the V3 configuration commit.
+- SEO/GEO changed: README updated to WARDOGS Guide description.
+- Verification: `npm run verify` passes against the empty baseline.
+
 ### YYYY-MM-DD - Template baseline initialized
 
 - Task: Create the initial generated guide-site baseline.

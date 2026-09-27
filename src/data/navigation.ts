@@ -6,17 +6,21 @@ export interface LocalizedNavigationItem {
 }
 
 export const primaryNavigation: LocalizedNavigationItem[] = [
-  { href: "/wiki", labels: { "en-US": "Wiki" } },
-  { href: "/guides", labels: { "en-US": "Guides" } },
-  { href: "/release-date", labels: { "en-US": "Release Date" } },
-  { href: "/faq", labels: { "en-US": "FAQ" } },
+  { href: "/", labels: { "en-US": "Home" } },
+  { href: "/about", labels: { "en-US": "About" } },
+  { href: "/release", labels: { "en-US": "Release" } },
+  { href: "/platforms", labels: { "en-US": "Platforms" } },
+  { href: "/gameplay", labels: { "en-US": "Gameplay" } },
+  { href: "/control-zone", labels: { "en-US": "Control Zone" } },
+  { href: "/roles", labels: { "en-US": "Roles" } },
+  { href: "/vehicles", labels: { "en-US": "Vehicles" } },
 ];
 
 export const footerNavigation: LocalizedNavigationItem[] = [
   { href: "/about", labels: { "en-US": "About" } },
-  { href: "/contact", labels: { "en-US": "Contact" } },
-  { href: "/privacy-policy", labels: { "en-US": "Privacy" } },
-  { href: "/terms", labels: { "en-US": "Terms" } },
+  { href: "/release", labels: { "en-US": "Release" } },
+  { href: "/steam", labels: { "en-US": "Steam" } },
+  { href: "/system-requirements", labels: { "en-US": "System Requirements" } },
 ];
 
 export function navigationLabel(

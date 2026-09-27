@@ -529,7 +529,10 @@ for (const page of getAllPages()) {
   }
 }
 
-const heroFixturePage = getAllPages().find((page) => page.id === "guides");
+const heroFixturePage =
+  getAllPages().find((page) => page.id === "guides") ??
+  getAllPages().find((page) => page.id === "home-en-US") ??
+  getAllPages()[0];
 if (!heroFixturePage) fail("guide fixture page is missing for review-date rendering validation");
 const pageHeroMarkup = renderToStaticMarkup(
   createElement(PageHero, { page: heroFixturePage }),
@@ -568,7 +571,7 @@ for (const locale of site.locales) {
 }
 
 const germanSearchFixture = {
-  ...getAllPages().find((page) => page.id === "guides")!,
+  ...(getAllPages().find((page) => page.id === "guides") ?? getAllPages().find((page) => page.id === "home-en-US") ?? getAllPages()[0])!,
   id: "fixture-guides-de",
   locale: "de-DE",
   slug: "de/guides",
@@ -596,35 +599,35 @@ if (
 
 const recentFixture = [
   {
-    ...getAllPages().find((page) => page.id === "guides")!,
+    ...getAllPages().find((page) => page.id === "fixed-tags-en-US") ?? getAllPages().find((page) => page.pageType === "wiki") ?? getAllPages()[0]!,
     id: "recent-z",
     slug: "z",
     url: "/z",
     lastReviewed: "2026-08-01",
   },
   {
-    ...getAllPages().find((page) => page.id === "wiki")!,
+    ...getAllPages().find((page) => page.id === "fixed-roles-en-US") ?? getAllPages().find((page) => page.pageType === "wiki") ?? getAllPages()[0]!,
     id: "recent-a",
     slug: "a",
     url: "/a",
     lastReviewed: "2026-08-01",
   },
   {
-    ...getAllPages().find((page) => page.id === "about")!,
+    ...getAllPages().find((page) => page.id === "fixed-release-status-en-US") ?? getAllPages().find((page) => page.pageType === "site") ?? getAllPages()[0]!,
     id: "recent-trust",
     slug: "trust",
     url: "/trust",
     lastReviewed: "2026-09-01",
   },
   {
-    ...getAllPages().find((page) => page.id === "faq")!,
+    ...getAllPages().find((page) => page.translationKey === "faq") ?? getAllPages().find((page) => page.pageType === "faq") ?? getAllPages()[0]!,
     id: "recent-faq",
     slug: "faq-copy",
     url: "/faq-copy",
     lastReviewed: "2026-09-03",
   },
   {
-    ...getAllPages().find((page) => page.id === "home")!,
+    ...getAllPages().find((page) => page.id === "home-en-US") ?? getAllPages().find((page) => page.pageType === "home") ?? getAllPages()[0]!,
     id: "recent-home",
     lastReviewed: "2026-09-02",
   },

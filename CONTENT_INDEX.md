@@ -6,43 +6,70 @@ Use this index to find the current role of each URL before editing. Update it wh
 
 ## Page Inventory
 
-The rows below are the primary-locale baseline. Localized versions keep the same
-`translationKey`, use their configured locale prefix, and must appear in canonical,
-hreflang, sitemap, and route-manifest validation.
+Primary locale `en-US`. All routes use the site root (`/`).
 
-| URL | File/Route | Type | Primary Keyword | Search Intent | Primary CTA | Internal-Link Role | Notes |
-|---|---|---|---|---|---|---|---|
-| `/` | `src/data/pages/home.ts` | Landing | Template Game guide | Find the best entry point | Open Wiki / Browse Guides | Hub | Replace with the configured game's main hub intent. |
-| `/wiki` | `src/data/pages/wiki-pages.ts` | Guide | Template Game wiki | Understand confirmed facts | Guides / FAQ | Hub | Keep official fact base and source context here. |
-| `/guides` | `src/data/pages/guide-pages.ts` | Guide | Template Game guides | Find guide topics before launch | Wiki / Release Info | Hub | Do not invent walkthroughs before reliable details exist. |
-| `/release-date` | `src/data/pages/release-pages.ts` | Guide | Template Game release date | Check release timing and platforms | FAQ / Wiki | Supporting hub | Must stay tied to official or store sources. |
-| `/faq` | `src/data/pages/site-pages.ts` | Guide | Template Game FAQ | Get short answers | Release Info / Contact | Answer hub | FAQ schema enabled. |
-| `/about` | `src/data/pages/site-pages.ts` | Utility | about Template Game Guide | Trust and editorial policy | Contact | Trust | Explain unofficial status and sourcing rules. |
-| `/contact` | `src/data/pages/site-pages.ts` | Utility | contact Template Game Guide | Corrections and source updates | About | Trust | Contact channel pending. |
-| `/privacy-policy` | `src/data/pages/site-pages.ts` | Legal | privacy policy | Privacy and analytics | Terms | Trust | GA4 only when configured. |
-| `/terms` | `src/data/pages/site-pages.ts` | Legal | terms of use | Site use expectations | Privacy Policy | Trust | Keep unofficial disclaimer clear. |
+| URL | Page ID | Type | Primary Keyword | Search Intent | Internal-Link Role |
+| --- | --- | --- | --- | --- | --- |
+| `/` | home | Home | WARDOGS game | Confirm identity, launch date, EA price, mode | Hub |
+| `/about` | overview | Explanation | what is WARDOGS | Identity, BULKHEAD developer, Team17 publisher | Cluster hub (Identity & launch window) |
+| `/release` | release-status | Status | WARDOGS release date | EA launch date, pricing, status change log | Cluster hub (Identity & launch window) |
+| `/steam` | steam-availability | Status | WARDOGS Steam AppID | Steam listing, Easy Anti-Cheat, 14 UI languages | Cluster member |
+| `/platforms` | platforms | Status | WARDOGS platforms | Confirmed platforms at EA launch | Cluster hub (Platforms & mode) |
+| `/multi-platform` | multi-platform | Status | WARDOGS PS5 / Xbox Series X|S | Unannounced-platform status | Cluster member |
+| `/closed-beta` | closed-beta | Status | WARDOGS Closed Beta | 2026-08-21 to 2026-08-23 pre-launch test | Cluster member |
+| `/tags` | tags | Reference | WARDOGS Steam tags | Genre and tag set | Cluster member |
+| `/gameplay` | gameplay-loop | Explanation | WARDOGS gameplay | 100-player three-squad tactical FPS loop | Cluster hub (Gameplay & economy) |
+| `/control-zone` | control-zone | Explanation | WARDOGS Control Zone | 2x2km Control Zone race details | Cluster hub (Platforms & mode) |
+| `/economy` | economy | Reference | WARDOGS gold bars | Persistent cash economy, gold bars, Black Market, Vault | Cluster hub (Gameplay & economy) |
+| `/roles` | roles | Reference | WARDOGS class roles | Deployable role set (ghillie suit, arms dealer, helicopter, artillery, builder, medic) | Cluster hub (Roles, vehicles & maps) |
+| `/vehicles` | vehicles | Reference | WARDOGS launch vehicles | Helicopter, tank, artillery; future fighter jets | Cluster member |
+| `/maps` | maps | Reference | WARDOGS maps | Launch map roster | Cluster member |
+| `/system-requirements` | system-requirements | Reference | WARDOGS system requirements | Windows minimum and recommended specs | Cluster member |
+| `/trailer` | trailer | Reference | WARDOGS trailer | Steam store trailer and BULKHD reveal | Cluster member |
+| `/reviews` | reviews | Status | WARDOGS EA reviews | EA review band and pre-launch wishlist signal | Cluster member |
+
+## Page Inventory Notes
+
+- All pages are sourced from `site-launch/tasks/wardogsgame-xyz/content/content-package.json` and `locales/en-US/*.md`.
+- Site Plan declares `entity_families: []` and `tool_pages: []`; no entity or tool routes exist for first launch.
+- Theme Spec declares one shared dark theme; no per-locale token set exists.
 
 ## Generated Route Families
 
-- Fixed and tool pages: authored in `src/data/pages/*.ts` with explicit locale and final URL.
-- Entity Hubs and details: generated from `src/data/entities.ts` and the generic renderer in `src/lib/entities.ts`.
+- Fixed pages: authored in `src/data/pages/fixed-pages.ts` and `src/data/pages/home.ts`.
+- Entity Hubs and details: none for first launch (`src/data/entities.ts` is empty).
 - Final route inventory: `npm run routes:manifest`.
-- Secondary-locale routes use the prefix configured in `src/data/site.ts`; the primary locale remains on root paths.
+- Validation: `python3 site-launch/roles/one-click-builder/skills/site-launch-verifier/scripts/validate_v3_route_contract.py`.
 
 ## Content Clusters
 
-- Launch facts: `/release-date`, `/faq`
-- Official facts and safe guide structure: `/wiki`, `/guides`
-- Evergreen hub and trust: `/`, `/about`, `/contact`, `/privacy-policy`, `/terms`
+- Identity & launch window: /about, /release, /steam, /closed-beta, /reviews.
+- Platforms & mode: /platforms, /multi-platform, /tags, /control-zone.
+- Gameplay & economy: /gameplay, /economy.
+- Roles, vehicles & maps: /roles, /vehicles, /maps.
+- Reference: /system-requirements, /trailer.
 
 ## Internal Linking Map
 
-- Homepage should link to the most current high-demand pages.
-- Wiki should link to guide and release pages.
-- Guides should link to wiki and release pages.
-- Release Date should link to FAQ and official sources.
-- FAQ should include all current high-demand answer pages.
+- /overview → /release, /platforms, /tags, /control-zone, /gameplay, /roles, /vehicles, /maps.
+- /release → /steam, /platforms, /reviews, /closed-beta, /multi-platform.
+- /steam → /system-requirements, /release, /platforms, /trailer.
+- /platforms → /steam, /release, /system-requirements, /multi-platform.
+- /multi-platform → /release, /platforms.
+- /closed-beta → /release, /platforms.
+- /tags → /about, /control-zone, /gameplay.
+- /gameplay → /control-zone, /economy, /roles, /vehicles, /maps.
+- /control-zone → /gameplay, /economy, /maps, /roles, /vehicles.
+- /economy → /gameplay, /control-zone, /roles, /vehicles.
+- /roles → /gameplay, /control-zone, /vehicles, /economy.
+- /vehicles → /gameplay, /control-zone, /economy, /roles.
+- /maps → /control-zone, /gameplay, /vehicles, /roles.
+- /system-requirements → /steam, /platforms.
+- /trailer → /steam, /about.
+- /reviews → /release, /steam, /closed-beta.
+- Home links to all 15 fixed pages plus the home itself.
 
 ## Open Questions
 
-- Replace this section with game-specific unknowns during content configuration.
+- Specific weapon and vehicle pricing, gold bar exchange rates, post-EA roadmap and DLC plans are labelled 'not announced as of 2026-09-28' on the relevant pages.
+- Console release plans (PS5, Xbox Series X|S, Switch, Switch 2) and Steam Deck verified status are not announced as of 2026-09-28.
