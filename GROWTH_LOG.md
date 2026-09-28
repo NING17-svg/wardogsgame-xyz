@@ -24,6 +24,14 @@ Record every growth-relevant edit here. Keep entries short, factual, and useful 
 - Entity changed: Generic entity Hubs/details now render source links, relationships, and optional registered local images from one base fact package.
 - Verification: Typecheck, template validation, content validation, rendered SEO validation, route-manifest generation, and multilingual entity fixtures.
 
+### 2026-09-28 - WARDOGS Adsterra six-unit integration
+
+- Task: Replace empty Adsterra placeholders with the fixed six-unit codes (Native Banner, Banner 728x90, Banner 468x60, Banner 320x50, Banner 160x600, Smartlink) on the canonical `src/data/ads.ts`.
+- Files changed: `src/data/ads.ts`.
+- URLs affected: None; placements and slot components are unchanged.
+- Ad baseline: All six values are non-empty and match the platform-side codes; Smartlink is an HTTPS URL, the other five are executable banner/native script blocks. Empty values no longer present, so the ad slots now run real Adsterra markup under the existing `AdSlot` / `Smartlink` components without changing layout.
+- Follow-up: `adsterra-integrator` will continue with local validation and target repo push; registry terminal state is owned by the shared publisher after the completion validator passes.
+
 ### 2026-09-28 - WARDOGS launch V3 site configuration
 
 - Task: Configure the WARDOGS Guide site (wardogsgame.xyz) with the V3 launch content package, primary locale en-US, and 16 fixed pages.
