@@ -9,7 +9,7 @@
   },
   "vars": {
     "NEXT_PUBLIC_SITE_URL": "https://wardogsgame.xyz",
-    "NEXT_PUBLIC_GA_MEASUREMENT_ID": "",
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID": "G-3ECZ2G98ZZ",
     "NEXT_PUBLIC_BING_SITE_AUTH_CODE": ""
   }
 }
