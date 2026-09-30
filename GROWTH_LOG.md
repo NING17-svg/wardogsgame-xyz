@@ -6,6 +6,16 @@ Record every growth-relevant edit here. Keep entries short, factual, and useful 
 
 ## Change Log
 
+### 2026-10-01 - Public page render-quality repair
+
+- Task: Repair the homepage and inner pages so the first screen carries a positioning line, key facts and priority entry points, and so authoring-pipeline artifacts never reach a public page.
+- Defects found: `hero.subtitle` and `quickAnswer` each held the whole ~4.8k-character research deliverable; a `quick-answer` module repeated `quickAnswer` verbatim; `##` markers, bullet lists and links rendered as literal Markdown; and the pipeline's own Sources, Internal Link Requirements and Fact Boundaries sections were published as reader content.
+- Files changed: `src/data/pages/home.ts`, `src/data/pages/fixed-pages.ts`, `src/data/faq.ts` (fold and module data), `src/components/content/ModuleRenderer.tsx` (prose body now renders Markdown), `src/lib/markdown.tsx` (new minimal Markdown-to-React renderer), `src/styles/modules.css` (prose body rules), `scripts/validate-render-integrity.ts` (new regression), `package.json` (new `validate:render` step in the `verify` chain).
+- URLs affected: None. Titles, H1s, canonicals, CTAs, page types and internal-link roles are unchanged, so `CONTENT_INDEX.md` is not revised.
+- SEO/GEO changed: FAQ entries that previously existed only as a Markdown module are now real entries in `src/data/faq.ts` and render through the accessible FAQ block, so FAQPage schema coverage rises from 6 to 59 items. `hero.subtitle` is now one sentence and `quickAnswer` is the concise answer, so the fold is a summary rather than a duplicate of the article.
+- Copy changed: Reader copy no longer refers to the build-now brief, the research cut-off date or the source-tier labels. Game facts, AppID 1867240, launch date, prices, platform scope, keyword intent, ad units and analytics are unchanged.
+- Verification: `npm run verify` (typecheck, lint, template, content, render integrity, IndexNow tests, static export, rendered SEO) passes; a full-text scan of all 17 built pages finds no raw heading markers, pipeline headings, research metadata or literal question/answer labels; desktop (1440) and mobile (390) renders were spot-checked with no horizontal overflow.
+
 ### 2026-08-12 - Static discovery and review freshness baseline added
 
 - Task: Add locale-aware static search, automatic recent updates, visible review dates, and browser metadata/security defaults to the shared template.

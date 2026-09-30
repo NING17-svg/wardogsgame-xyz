@@ -84,6 +84,33 @@
   background: var(--surface-1);
 }
 
+.prose-body > * + * {
+  margin-top: 0.75em;
+}
+
+.prose-body h3,
+.prose-body h4,
+.prose-body h5,
+.prose-body h6 {
+  margin-top: 1.25em;
+  font-family: var(--font-heading);
+}
+
+.prose-body ul,
+.prose-body ol {
+  display: grid;
+  gap: 0.4em;
+  padding-left: 1.25em;
+}
+
+.prose-body code {
+  padding: 0.1em 0.35em;
+  border: var(--border-width) solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-size: 0.9em;
+}
+
 .entity-grid,
 .recipe-grid,
 .comparison-grid,

@@ -15,8 +15,9 @@
     "indexnow:setup": "tsx scripts/indexnow.ts setup",
     "indexnow:submit": "tsx scripts/indexnow.ts submit",
     "routes:manifest": "tsx scripts/print-route-manifest.ts",
-    "verify": "npm run typecheck && npm run lint && npm run validate:template && npm run validate:content && npm run validate:indexnow && npm run build && npm run validate:rendered-seo",
-    "preview": "npm run build && wrangler dev"
+    "verify": "npm run typecheck && npm run lint && npm run validate:template && npm run validate:content && npm run validate:render && npm run validate:indexnow && npm run build && npm run validate:rendered-seo",
+    "preview": "npm run build && wrangler dev",
+    "validate:render": "tsx scripts/validate-render-integrity.ts"
   },
   "dependencies": {
     "next": "15.5.18",
