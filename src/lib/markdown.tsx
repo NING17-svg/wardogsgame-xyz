@@ -16,11 +16,31 @@ import type { ReactNode } from "react";
 type Block =
   | { kind: "heading"; level: number; text: string }
   | { kind: "paragraph"; text: string }
-  | { kind: "list"; ordered: boolean; items: string[] };
+  | { kind: "list"; ordered: boolean; items: string[] }
+  | { kind: "table"; header: string[]; rows: string[][] };
 
 const HEADING_RE = /^(#{2,6})\s+(.*\S)\s*$/;
 const BULLET_RE = /^[-*+]\s+(.*\S)\s*$/;
 const ORDERED_RE = /^\d+[.)]\s+(.*\S)\s*$/;
+// A pipe-delimited row, and the `| --- | --- |` rule that marks the header.
+const TABLE_ROW_RE = /^\s*\|(.+)\|\s*$/;
+const TABLE_RULE_RE = /^\s*\|(?:\s*:?-{2,}:?\s*\|)+\s*$/;
+
+const tableCells = (line: string): string[] =>
+  line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((cell) => cell.trim());
+
+/** True when a chunk of lines is a Markdown table, with or without a header. */
+function asTable(lines: string[]): { header: string[]; rows: string[][] } | null {
+  if (lines.length < 2 || !lines.every((line) => TABLE_ROW_RE.test(line))) return null;
+  if (TABLE_RULE_RE.test(lines[1])) {
+    const header = tableCells(lines[0]);
+    const rows = lines.slice(2).map(tableCells);
+    return rows.every((row) => row.length === header.length) ? { header, rows } : null;
+  }
+  const rows = lines.map(tableCells);
+  const width = rows[0].length;
+  return rows.every((row) => row.length === width) ? { header: [], rows } : null;
+}
 
 function splitBlocks(body: string): Block[] {
   const blocks: Block[] = [];
@@ -39,6 +59,11 @@ function splitBlocks(body: string): Block[] {
     }
     if (lines.every((line) => ORDERED_RE.test(line))) {
       blocks.push({ kind: "list", ordered: true, items: lines.map((l) => ORDERED_RE.exec(l)![1]) });
+      continue;
+    }
+    const table = asTable(lines);
+    if (table) {
+      blocks.push({ kind: "table", ...table });
       continue;
     }
     blocks.push({ kind: "paragraph", text: lines.join(" ") });
@@ -79,6 +104,16 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
   return nodes;
 }
 
+/**
+ * Inline Markdown only: no block elements, for a field the page shell already
+ * places inside a single element such as the Quick Answer callout. Authored
+ * copy in those fields may still contain a link, and rendering it as literal
+ * `[label](url)` text is the same defect as an unrendered `##` marker.
+ */
+export function renderInlineMarkdown(text: string): ReactNode {
+  return <>{renderInline(String(text ?? ""), "inline")}</>;
+}
+
 export function renderMarkdown(body: string): ReactNode {
   return (
     <>
@@ -98,6 +133,34 @@ export function renderMarkdown(body: string): ReactNode {
                 <li key={`${key}-${i}`}>{renderInline(item, `${key}-${i}`)}</li>
               ))}
             </Tag>
+          );
+        }
+        if (block.kind === "table") {
+          return (
+            <div className="table-scroll" key={key}>
+              <table>
+                {block.header.length > 0 && (
+                  <thead>
+                    <tr>
+                      {block.header.map((cell, i) => (
+                        <th key={`${key}-h${i}`} scope="col">
+                          {renderInline(cell, `${key}-h${i}`)}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                )}
+                <tbody>
+                  {block.rows.map((row, r) => (
+                    <tr key={`${key}-r${r}`}>
+                      {row.map((cell, c) => (
+                        <td key={`${key}-r${r}c${c}`}>{renderInline(cell, `${key}-r${r}c${c}`)}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
         return <p key={key}>{renderInline(block.text, key)}</p>;

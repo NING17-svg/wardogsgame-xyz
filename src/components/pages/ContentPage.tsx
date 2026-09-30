@@ -13,6 +13,7 @@ import {
   collectionPageSchema,
   faqSchema,
 } from "@/lib/schema";
+import { renderInlineMarkdown } from "@/lib/markdown";
 import type { PageContent } from "@/types/content";
 
 export function ContentPage({ page }: { page: PageContent }) {
@@ -38,7 +39,7 @@ export function ContentPage({ page }: { page: PageContent }) {
       <AdSlot placement="responsive-banner" />
       <div className="content-layout" data-variant={variant}>
         <div className="article-body">
-          <p className="quick-answer">{page.quickAnswer}</p>
+          <p className="quick-answer">{renderInlineMarkdown(page.quickAnswer)}</p>
           <ModuleRenderer modules={leadingModules} />
           <AdSlot placement="native-banner" />
           {remainingModules.length ? (
